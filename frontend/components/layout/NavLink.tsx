@@ -1,32 +1,28 @@
 import Link from "next/link";
 
-const links = [
-  { label: "Inicio", href: "#" },
-  { label: "Nosotros", href: "#nosotros" },
-  { label: "Proyectos", href: "#proyectos" },
-  { label: "Vivienda", href: "#casa-modelo" },
-  { label: "Galería", href: "#galeria" },
-  { label: "Transparencia", href: "#transparencia" },
-  { label: "Contacto", href: "#contacto" },
-];
+interface NavLinkProps {
+  label: string;
+  href: string;
+  className?: string;
+}
 
-export default function NavLinks() {
+export default function NavLink({
+  label,
+  href,
+  className = "",
+}: NavLinkProps) {
   return (
-    <>
-      {links.map((item) => (
-        <Link
-          key={item.label}
-          href={item.href}
-          className="
-            text-slate-700
-            font-medium
-            transition
-            hover:text-sky-700
-          "
-        >
-          {item.label}
-        </Link>
-      ))}
-    </>
+    <Link
+      href={href}
+      className={`
+        text-slate-700
+        font-medium
+        transition
+        hover:text-sky-700
+        ${className}
+      `}
+    >
+      {label}
+    </Link>
   );
 }
